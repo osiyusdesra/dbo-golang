@@ -6,7 +6,6 @@ import (
 	"be-dbo-golang/utils/auth"
 	"be-dbo-golang/utils/pagination"
 	"errors"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -240,7 +239,7 @@ func (repository *CustomerRepo) GetCustomersData(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	fmt.Println(Customers)
+
 	var responses []CustomerResponse
 	for _, Customer := range Customers {
 		response := CustomerResponse{

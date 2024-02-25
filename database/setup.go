@@ -34,7 +34,9 @@ func connectDataBase() *gorm.DB {
 	// root:root@tcp(localhost:3306)/jwt_demo?parseTime=true
 	DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
 
-	DB, err = gorm.Open(mysql.Open(DBURL), &gorm.Config{})
+	DB, err = gorm.Open(mysql.Open(DBURL), &gorm.Config{
+		// Logger: logger.Default.LogMode(logger.Info),
+	})
 
 	if err != nil {
 		fmt.Println("Cannot connect to database")
@@ -42,6 +44,8 @@ func connectDataBase() *gorm.DB {
 	} else {
 		fmt.Println("We are connected to the database")
 	}
+	// Print queries to console
+	// DB = DB.Debug()
 
 	return DB
 
